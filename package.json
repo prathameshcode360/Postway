@@ -1,0 +1,23 @@
+{
+  "name": "postway",
+  "version": "1.0.0",
+  "description": "Implementation of Backend REST API structure for social media platform",
+  "homepage": "https://github.com/prathameshcode360/Postway#readme",
+  "bugs": {
+    "url": "https://github.com/prathameshcode360/Postway/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prathameshcode360/Postway.git"
+  },
+  "license": "ISC",
+  "author": "Prathamesh Mhatugade",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
