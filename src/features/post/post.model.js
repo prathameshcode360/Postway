@@ -9,6 +9,14 @@ export default class PostModel {
   static getAll() {
     return posts;
   }
+  static getOne(id) {
+    const post = posts.find((p) => p.id == id);
+    return post;
+  }
+
+  static getUserPosts(userId) {
+    return posts.filter((p) => p.userId == userId);
+  }
 
   static add(caption, image, userId, username) {
     const newPost = new PostModel(
@@ -20,6 +28,27 @@ export default class PostModel {
     );
     posts.push(newPost);
     return newPost;
+  }
+  static update(id, updateData, userId) {
+    const index = posts.findIndex((p) => p.id == id && p.userId == userId);
+
+    if (index !== -1) {
+      posts[index].caption = updateData.caption || posts[index].caption;
+      posts[index].image = updateData.image || posts[index].image;
+
+      return posts[index];
+    } else {
+      return null;
+    }
+  }
+  static delete(id, userId) {
+    const index = posts.findIndex((p) => p.id == id && p.userId == userId);
+    if (index !== -1) {
+      posts.splice(index, 1);
+      return "post deleted successfully";
+    } else {
+      return "post not found";
+    }
   }
 }
 let posts = [
