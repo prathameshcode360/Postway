@@ -39,4 +39,15 @@ export default class CommentController {
       return res.status(500).send({ msg: "Internal server error" });
     }
   }
+  removeComment(req, res) {
+    try {
+      const id = req.params.id;
+      const { userId } = req.user;
+      const result = CommentModel.remove(id, userId);
+      return res.send({ msg: result });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).send({ msg: "Internal server error" });
+    }
+  }
 }

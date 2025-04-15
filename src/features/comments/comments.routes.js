@@ -10,5 +10,6 @@ commentRouter.get("/get/:id", commentController.getComments);
 commentRouter.post("/getOne/:id", jwtAuth, commentController.getOneComment);
 
 commentRouter.post("/add", jwtAuth, commentController.addNewComment);
+commentRouter.delete("/delete/:id", jwtAuth, commentController.removeComment);
 
 export default commentRouter;

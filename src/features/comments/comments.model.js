@@ -35,6 +35,14 @@ export default class CommentModel {
     );
     return comment;
   }
+  static remove(id, userId) {
+    const index = comments.findIndex((c) => c.id == id && c.userId == userId);
+    if (index !== -1) {
+      comments.splice(index, 1);
+      return "comment delete successfully";
+    }
+    return "No comment found";
+  }
 }
 let comments = [
   new CommentModel(1, 1, 1, "Nice-One!"),
