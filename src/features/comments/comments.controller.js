@@ -50,4 +50,21 @@ export default class CommentController {
       return res.status(500).send({ msg: "Internal server error" });
     }
   }
+  updateComment(req, res) {
+    try {
+      const { userId } = req.user;
+      const { postId, updatedComment } = req.body;
+      const id = req.params.id;
+      const comment = CommentModel.update(id, postId, userId, updatedComment);
+      if (!comment) {
+        return res.status(404).send({ msg: "Comment not found" });
+      }
+      return res
+        .status(201)
+        .send({ msg: "Comment updated successfully", comment });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).send({ msg: "Internal server error" });
+    }
+  }
 }

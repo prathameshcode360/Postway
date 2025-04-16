@@ -43,6 +43,18 @@ export default class CommentModel {
     }
     return "No comment found";
   }
+  static update(id, posteId, userId, updatedComment) {
+    const findCommentIndex = comments.findIndex(
+      (comment) =>
+        comment.id == id &&
+        comment.postId == posteId &&
+        comment.userId == userId
+    );
+    if (findCommentIndex !== -1) {
+      comments[findCommentIndex].comment = updatedComment;
+      return comments[findCommentIndex];
+    }
+  }
 }
 let comments = [
   new CommentModel(1, 1, 1, "Nice-One!"),
