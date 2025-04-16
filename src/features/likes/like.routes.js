@@ -6,7 +6,7 @@ const likeController = new LikeController();
 
 const likeRouter = express.Router();
 
-likeRouter.get("/get/:id", likeController.getAllLikes);
+likeRouter.get("/:id", likeController.getAllLikes);
 likeRouter.post("/toggle/:id", jwtAuth, likeController.toggleLike);
 
 export default likeRouter;

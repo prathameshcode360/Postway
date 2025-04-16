@@ -1,0 +1,3 @@
+{"level":"info","message":"GET /api/posts - Body: undefined","service":"request-logging"}
+{"level":"info","message":"GET /api/likes/1 - Body: undefined","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/add - Body: {\"caption\":\"test post\",\"image\":\"test.png\"}","service":"request-logging"}
