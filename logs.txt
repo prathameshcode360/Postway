@@ -5,3 +5,15 @@
 {"level":"info","message":"PUT /api/comments/update/1 - Body: {\"postId\":1,\"updatedComment\":\"updated nice\"}","service":"request-logging"}
 {"level":"info","message":"GET /api/comments/1 - Body: {\"postId\":1,\"updatedComment\":\"updated nice\"}","service":"request-logging"}
 {"level":"info","message":"GET /api/comments/get/1 - Body: {\"postId\":1,\"updatedComment\":\"updated nice\"}","service":"request-logging"}
+{"level":"info","message":"GET /api/posts - Body: undefined","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/add - Body: undefined","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/add - Body: undefined","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/add - Body: undefined","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/add - Body: undefined","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/add - Body: undefined","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/add - Body: undefined","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/add - Body: undefined","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/add - Body: undefined","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/add - Body: undefined","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/add - Body: undefined","service":"request-logging"}
+{"level":"info","message":"GET /api/posts - Body: undefined","service":"request-logging"}

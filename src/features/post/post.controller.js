@@ -41,7 +41,8 @@ export default class PostController {
 
   createPost(req, res) {
     try {
-      const { caption, image } = req.body;
+      const { caption } = req.body;
+      const image = req.file.filename;
       const { userId, username } = req.user;
       const newPost = PostModel.add(caption, image, userId, username);
       return res
