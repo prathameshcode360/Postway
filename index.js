@@ -19,7 +19,7 @@ server.use((err, req, res, next) => {
   if (err instanceof ApplicationError) {
     return res.status(err.statusCode).send(err.message);
   }
-  res.status(500).send("Something went wrong pleae try again later");
+  res.status(500).send("Something went wrong please try again later");
 });
 
 server.use((req, res) => {

@@ -19,7 +19,6 @@ Implementation of Backend REST API structure for a social media platform built u
 
 - Node.js
 - Express.js
-- MongoDB
 - JWT (Authentication)
 - Multer (File Uploads)
 
