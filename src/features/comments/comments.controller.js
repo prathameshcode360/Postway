@@ -1,7 +1,7 @@
 import CommentModel from "./comments.model.js";
 
 export default class CommentController {
-  addNewComment(req, res) {
+  addNewComment(req, res, next) {
     try {
       const { userId } = req.user;
       const { postId, comment } = req.body;
@@ -9,10 +9,10 @@ export default class CommentController {
       return res.send({ result });
     } catch (error) {
       console.log(error);
-      return res.status(500).send({ msg: "Internal server error" });
+      next(error);
     }
   }
-  getComments(req, res) {
+  getComments(req, res, next) {
     try {
       const postId = req.params.id;
       let comments = CommentModel.getAll(postId);
@@ -22,10 +22,10 @@ export default class CommentController {
       return res.status(200).send({ comments });
     } catch (error) {
       console.log(error);
-      return res.status(500).send({ msg: "Internal server error" });
+      next(error);
     }
   }
-  getOneComment(req, res) {
+  getOneComment(req, res, next) {
     try {
       const { userId } = req.user;
       const postId = req.params.id;
@@ -36,10 +36,10 @@ export default class CommentController {
       return res.status(200).send({ comment });
     } catch (error) {
       console.log(error);
-      return res.status(500).send({ msg: "Internal server error" });
+      next(error);
     }
   }
-  removeComment(req, res) {
+  removeComment(req, res, next) {
     try {
       const id = req.params.id;
       const { userId } = req.user;
@@ -47,10 +47,10 @@ export default class CommentController {
       return res.send({ msg: result });
     } catch (error) {
       console.log(error);
-      return res.status(500).send({ msg: "Internal server error" });
+      next(error);
     }
   }
-  updateComment(req, res) {
+  updateComment(req, res, next) {
     try {
       const { userId } = req.user;
       const { postId, updatedComment } = req.body;
@@ -64,7 +64,7 @@ export default class CommentController {
         .send({ msg: "Comment updated successfully", comment });
     } catch (error) {
       console.log(error);
-      return res.status(500).send({ msg: "Internal server error" });
+      next(error);
     }
   }
 }

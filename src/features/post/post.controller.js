@@ -1,17 +1,17 @@
 import PostModel from "./post.model.js";
 
 export default class PostController {
-  getPosts(req, res) {
+  getPosts(req, res, next) {
     try {
       let posts = PostModel.getAll();
       return res.status(200).send({ posts });
     } catch (error) {
       console.log(error);
-      return res.status(500).send({ msg: "Internal Server Error" });
+      next(error);
     }
   }
 
-  getOnePost(req, res) {
+  getOnePost(req, res, next) {
     try {
       const id = req.params.id;
       const post = PostModel.getOne(id);
@@ -21,11 +21,11 @@ export default class PostController {
       return res.status(200).send({ post });
     } catch (error) {
       console.log(error);
-      return res.status(500).send({ msg: "Internal Server Error" });
+      next(error);
     }
   }
 
-  getUserPosts(req, res) {
+  getUserPosts(req, res, next) {
     try {
       const { userId } = req.user;
       let userPosts = PostModel.getUserPosts(userId);
@@ -35,11 +35,11 @@ export default class PostController {
       return res.status(200).send({ userPosts });
     } catch (error) {
       console.log(error);
-      return res.status(500).send({ msg: "Internal Server Error" });
+      next(error);
     }
   }
 
-  createPost(req, res) {
+  createPost(req, res, next) {
     try {
       const { caption } = req.body;
       const image = req.file.filename;
@@ -50,10 +50,10 @@ export default class PostController {
         .send({ msg: "Post added successfully", newPost: newPost });
     } catch (error) {
       console.log(error);
-      return res.status(500).send({ msg: "Internal Server Error" });
+      next(error);
     }
   }
-  updatePost(req, res) {
+  updatePost(req, res, next) {
     try {
       const id = req.params.id;
       const updatedData = req.body;
@@ -65,10 +65,10 @@ export default class PostController {
       return res.status(201).send({ msg: "Post Updated", updatedPost });
     } catch (error) {
       console.log(error);
-      return res.status(500).send({ msg: "Internal Server Error" });
+      next(error);
     }
   }
-  deletePost(req, res) {
+  deletePost(req, res, next) {
     try {
       const id = req.params.id;
       const { userId } = req.user;
@@ -76,7 +76,7 @@ export default class PostController {
       return res.send(result);
     } catch (error) {
       console.log(error);
-      return res.status(500).send({ msg: "Internal Server Error" });
+      next(error);
     }
   }
 }

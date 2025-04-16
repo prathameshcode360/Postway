@@ -1,16 +1,16 @@
 import UserModel from "./user.model.js";
 import jwt from "jsonwebtoken";
 export default class UserController {
-  getUsers(req, res) {
+  getUsers(req, res, next) {
     try {
       const users = UserModel.getAll();
       return res.status(200).send({ users });
     } catch (error) {
       console.log(error);
-      return res.status(500).send({ msg: "Internal Server error" });
+      next(error);
     }
   }
-  signUp(req, res) {
+  signUp(req, res, next) {
     try {
       const { userName, password } = req.body;
       const newUser = UserModel.register(userName, password);
@@ -19,10 +19,10 @@ export default class UserController {
         .send({ msg: "User added successfully", user: newUser });
     } catch (error) {
       console.log(error);
-      return res.status(500).send({ msg: "Internal Server error" });
+      next(error);
     }
   }
-  signIn(req, res) {
+  signIn(req, res, next) {
     try {
       const { userName, password } = req.body;
       const user = UserModel.login(userName, password);
@@ -42,10 +42,10 @@ export default class UserController {
       return res.status(200).send(token);
     } catch (error) {
       console.log(error);
-      return res.status(500).send({ msg: "Internal Server error" });
+      next(error);
     }
   }
-  getOneUser(req, res) {
+  getOneUser(req, res, next) {
     try {
       const id = req.params.id;
       const user = UserModel.getOneUser(id);
@@ -55,7 +55,7 @@ export default class UserController {
       return res.status(200).send({ user });
     } catch (error) {
       console.log(error);
-      return res.status(500).send({ msg: "Internal Server error" });
+      next(error);
     }
   }
 }

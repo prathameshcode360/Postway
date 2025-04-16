@@ -1,7 +1,7 @@
 import LikeModel from "./like.model.js";
 
 export default class LikeController {
-  getAllLikes(req, res) {
+  getAllLikes(req, res, next) {
     try {
       const postId = req.params.id;
       let likes = LikeModel.getAll(postId);
@@ -11,10 +11,10 @@ export default class LikeController {
       return res.status(200).send({ likes });
     } catch (error) {
       console.log(error);
-      return res.status(500).send({ msg: "Internal server error" });
+      next(error);
     }
   }
-  toggleLike(req, res) {
+  toggleLike(req, res, next) {
     try {
       const postId = req.params.id;
       const { userId } = req.user;
@@ -22,7 +22,7 @@ export default class LikeController {
       return res.status(200).send({ msg: result });
     } catch (error) {
       console.log(error);
-      return res.status(500).send({ msg: "Internal server error" });
+      next(error);
     }
   }
 }
