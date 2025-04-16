@@ -2,6 +2,7 @@ import express from "express";
 import userRouter from "./src/features/users/user.routes.js";
 import postRouter from "./src/features/post/post.routes.js";
 import commentRouter from "./src/features/comments/comments.routes.js";
+import likeRouter from "./src/features/likes/like.routes.js";
 
 const server = express();
 
@@ -10,6 +11,7 @@ server.use(express.json());
 server.use("/api/users", userRouter);
 server.use("/api/posts", postRouter);
 server.use("/api/comments", commentRouter);
+server.use("/api/likes", likeRouter);
 
 server.get("/", (req, res) => {
   res.send("Welcome to node js server");
