@@ -16,7 +16,12 @@ postRouter.post(
   fileUpload.single("image"),
   postController.createPost
 );
-postRouter.put("/update/:id", jwtAuth, postController.updatePost);
+postRouter.put(
+  "/update/:id",
+  jwtAuth,
+  fileUpload.single("image"),
+  postController.updatePost
+);
 postRouter.delete("/delete/:id", jwtAuth, postController.deletePost);
 
 export default postRouter;

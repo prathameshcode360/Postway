@@ -24,16 +24,13 @@ export default class CommentModel {
       return "Post not found";
     }
   }
-  // getting all comments for one post
+  // getting all users comments for one post
   static getAll(postId) {
     return comments.filter((c) => c.postId == postId);
   }
-  //   getting user comment on that post
+  //   getting one user comments on single post
   static getOne(postId, userId) {
-    const comment = comments.find(
-      (c) => c.postId == postId && c.userId == userId
-    );
-    return comment;
+    return comments.filter((c) => c.postId == postId && c.userId == userId);
   }
   static remove(id, userId) {
     const index = comments.findIndex((c) => c.id == id && c.userId == userId);

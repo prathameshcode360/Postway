@@ -56,9 +56,10 @@ export default class PostController {
   updatePost(req, res, next) {
     try {
       const id = req.params.id;
-      const updatedData = req.body;
+      const { caption } = req.body;
+      const image = req.file ? req.file.filename : null;
       const { userId } = req.user;
-      const updatedPost = PostModel.update(id, updatedData, userId);
+      const updatedPost = PostModel.update(id, caption, image, userId);
       if (!updatedPost) {
         return res.status(404).send({ msg: "Post not found" });
       }

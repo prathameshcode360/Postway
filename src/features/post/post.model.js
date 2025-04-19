@@ -29,12 +29,12 @@ export default class PostModel {
     posts.push(newPost);
     return newPost;
   }
-  static update(id, updateData, userId) {
+  static update(id, caption, image, userId) {
     const index = posts.findIndex((p) => p.id == id && p.userId == userId);
 
     if (index !== -1) {
-      posts[index].caption = updateData.caption || posts[index].caption;
-      posts[index].image = updateData.image || posts[index].image;
+      posts[index].caption = caption || posts[index].caption;
+      posts[index].image = image || posts[index].image;
 
       return posts[index];
     } else {

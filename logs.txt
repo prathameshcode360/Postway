@@ -17,3 +17,79 @@
 {"level":"info","message":"POST /api/posts/add - Body: undefined","service":"request-logging"}
 {"level":"info","message":"POST /api/posts/add - Body: undefined","service":"request-logging"}
 {"level":"info","message":"GET /api/posts - Body: undefined","service":"request-logging"}
+{"level":"info","message":"GET /api/posts - Body: {\"userName\":\"user3\",\"password\":\"user3\"}","service":"request-logging"}
+{"level":"info","message":"GET /api/posts/1 - Body: {\"userName\":\"user3\",\"password\":\"user3\"}","service":"request-logging"}
+{"level":"info","message":"GET /api/posts/2 - Body: {\"userName\":\"user3\",\"password\":\"user3\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/add - Body: undefined","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/add - Body: undefined","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/add - Body: undefined","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/userPosts - Body: undefined","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/update/3 - Body: undefined","service":"request-logging"}
+{"level":"info","message":"PUT /api/posts/update/3 - Body: undefined","service":"request-logging"}
+{"level":"info","message":"PUT /api/posts/update/3 - Body: {\"caption\":\"updated post name\"}","service":"request-logging"}
+{"level":"info","message":"DELETE /api/posts/delete/3 - Body: {\"caption\":\"updated post name\"}","service":"request-logging"}
+{"level":"info","message":"DELETE /api/posts/delete/2 - Body: {\"caption\":\"updated post name\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/userPosts - Body: {\"caption\":\"updated post name\"}","service":"request-logging"}
+{"level":"info","message":"DELETE /api/posts/delete/1 - Body: {\"caption\":\"updated post name\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/userPosts - Body: {\"caption\":\"updated post name\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/userPosts - Body: {\"caption\":\"updated post name\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/userPosts - Body: {\"userName\":\"user1\",\"password\":\"user1\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/update/1 - Body: undefined","service":"request-logging"}
+{"level":"info","message":"PUT /api/posts/update/1 - Body: undefined","service":"request-logging"}
+{"level":"info","message":"PUT /api/posts/update/1 - Body: {\"caption\":\"updated post name\"}","service":"request-logging"}
+{"level":"info","message":"PUT /api/posts/update/1 - Body: {\"caption\":\"updated post name\"}","service":"request-logging"}
+{"level":"info","message":"PUT /api/posts/update/1 - Body: {\"caption\":\"updated post name\"}","service":"request-logging"}
+{"level":"info","message":"PUT /api/posts/update/1 - Body: undefined","service":"request-logging"}
+{"level":"info","message":"PUT /api/posts/update/1 - Body: undefined","service":"request-logging"}
+{"level":"info","message":"PUT /api/posts/update/1 - Body: undefined","service":"request-logging"}
+{"level":"info","message":"PUT /api/posts/update/1 - Body: undefined","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/userPosts - Body: undefined","service":"request-logging"}
+{"level":"info","message":"PUT /api/posts/update/1 - Body: undefined","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/add - Body: undefined","service":"request-logging"}
+{"level":"info","message":"PUT /api/posts/update/1 - Body: undefined","service":"request-logging"}
+{"level":"info","message":"PUT /api/posts/update/3 - Body: undefined","service":"request-logging"}
+{"level":"info","message":"PUT /api/posts/update/3 - Body: undefined","service":"request-logging"}
+{"level":"info","message":"PUT /api/posts/update/3 - Body: undefined","service":"request-logging"}
+{"level":"info","message":"PUT /api/posts/update/1 - Body: undefined","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/userPosts - Body: undefined","service":"request-logging"}
+{"level":"info","message":"PUT /api/posts/update/1 - Body: undefined","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/userPosts - Body: undefined","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/userPosts - Body: {\"userName\":\"user1\",\"password\":\"user1\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/delete/1 - Body: {\"userName\":\"user1\",\"password\":\"user1\"}","service":"request-logging"}
+{"level":"info","message":"DELETE /api/posts/delete/1 - Body: {\"userName\":\"user1\",\"password\":\"user1\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/posts/userPosts - Body: {\"userName\":\"user1\",\"password\":\"user1\"}","service":"request-logging"}
+{"level":"info","message":"GET /api/comments/1 - Body: {\"userName\":\"user1\",\"password\":\"user1\"}","service":"request-logging"}
+{"level":"info","message":"GET /api/comments/get/1 - Body: {\"userName\":\"user1\",\"password\":\"user1\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/comments/getOne/1 - Body: {\"userName\":\"user1\",\"password\":\"user1\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/comments/add - Body: {\"postId\":4,\"comment\":\"second comment of user1 on post1\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/comments/add - Body: {\"postId\":1,\"comment\":\"second comment of user1 on post1\"}","service":"request-logging"}
+{"level":"info","message":"GET /api/comments/get/1 - Body: {\"postId\":1,\"comment\":\"second comment of user1 on post1\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/comments/getOne/1 - Body: {\"postId\":1,\"comment\":\"second comment of user1 on post1\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/comments/getOne/2 - Body: {\"postId\":1,\"comment\":\"second comment of user1 on post1\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/comments/getOne/3 - Body: {\"postId\":1,\"comment\":\"second comment of user1 on post1\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/comments/getOne/3 - Body: {\"postId\":1,\"comment\":\"second comment of user1 on post1\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/comments/getOne/1 - Body: {\"postId\":1,\"comment\":\"second comment of user1 on post1\"}","service":"request-logging"}
+{"level":"info","message":"GET /api/comments/get/1 - Body: {\"postId\":1,\"comment\":\"second comment of user1 on post1\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/comments/getOne/1 - Body: {\"postId\":1,\"comment\":\"second comment of user1 on post1\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/comments/getOne/2 - Body: {\"postId\":1,\"comment\":\"second comment of user1 on post1\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/comments/add - Body: {\"postId\":1,\"comment\":\"second comment of user1 on post1\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/comments/getOne/1 - Body: {\"postId\":1,\"comment\":\"second comment of user1 on post1\"}","service":"request-logging"}
+{"level":"info","message":"PUT /api/comments/update/1 - Body: {\"postId\":1,\"comment\":\"Nice-one comment updated\"}","service":"request-logging"}
+{"level":"info","message":"PUT /api/comments/update/1 - Body: {\"postId\":1,\"Updatedcomment\":\"Nice-one comment updated\"}","service":"request-logging"}
+{"level":"info","message":"PUT /api/comments/update/1 - Body: {\"postId\":1,\"updatedComment\":\"Nice-one comment updated\"}","service":"request-logging"}
+{"level":"info","message":"PUT /api/comments/update/1 - Body: {\"postId\":2,\"updatedComment\":\"Nice-one comment updated\"}","service":"request-logging"}
+{"level":"info","message":"PUT /api/comments/update/2 - Body: {\"postId\":1,\"updatedComment\":\"Nice-one comment updated\"}","service":"request-logging"}
+{"level":"info","message":"PUT /api/comments/update/1 - Body: {\"postId\":1,\"updatedComment\":\"Nice-one comment updated\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/comments/getOne/1 - Body: {\"postId\":1,\"updatedComment\":\"Nice-one comment updated\"}","service":"request-logging"}
+{"level":"info","message":"DELETE /api/comments/delete/3 - Body: {\"postId\":1,\"updatedComment\":\"Nice-one comment updated\"}","service":"request-logging"}
+{"level":"info","message":"DELETE /api/comments/delete/3 - Body: {\"postId\":1,\"updatedComment\":\"Nice-one comment updated\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/comments/getOne/1 - Body: {\"postId\":1,\"updatedComment\":\"Nice-one comment updated\"}","service":"request-logging"}
+{"level":"info","message":"DELETE /api/comments/delete/1 - Body: {\"postId\":1,\"updatedComment\":\"Nice-one comment updated\"}","service":"request-logging"}
+{"level":"info","message":"DELETE /api/comments/delete/1 - Body: {\"postId\":1,\"updatedComment\":\"Nice-one comment updated\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/comments/getOne/1 - Body: {\"postId\":1,\"updatedComment\":\"Nice-one comment updated\"}","service":"request-logging"}
+{"level":"info","message":"GET /api/likes/1 - Body: {\"postId\":1,\"updatedComment\":\"Nice-one comment updated\"}","service":"request-logging"}
+{"level":"info","message":"GET /api/likes/2 - Body: {\"postId\":1,\"updatedComment\":\"Nice-one comment updated\"}","service":"request-logging"}
+{"level":"info","message":"GET /api/likes/3 - Body: {\"postId\":1,\"updatedComment\":\"Nice-one comment updated\"}","service":"request-logging"}
+{"level":"info","message":"GET /api/likes/1 - Body: {\"postId\":1,\"updatedComment\":\"Nice-one comment updated\"}","service":"request-logging"}
+{"level":"info","message":"POST /api/likes/toggle/1 - Body: {\"postId\":1,\"updatedComment\":\"Nice-one comment updated\"}","service":"request-logging"}
+{"level":"info","message":"GET /api/likes/1 - Body: {\"postId\":1,\"updatedComment\":\"Nice-one comment updated\"}","service":"request-logging"}

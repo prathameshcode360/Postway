@@ -25,15 +25,17 @@ export default class CommentController {
       next(error);
     }
   }
-  getOneComment(req, res, next) {
+  getOneUserComments(req, res, next) {
     try {
       const { userId } = req.user;
       const postId = req.params.id;
-      const comment = CommentModel.getOne(postId, userId);
-      if (!comment) {
-        return res.status(404).send({ msg: "No comment found" });
+      const comments = CommentModel.getOne(postId, userId);
+      if (comments.length <= 0) {
+        return res
+          .status(404)
+          .send({ msg: "No comments found for the user on this post" });
       }
-      return res.status(200).send({ comment });
+      return res.status(200).send({ comments });
     } catch (error) {
       console.log(error);
       next(error);

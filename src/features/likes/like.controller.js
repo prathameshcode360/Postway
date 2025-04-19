@@ -8,7 +8,7 @@ export default class LikeController {
       if (likes.length <= 0) {
         return res.status(404).send({ msg: "No likes found for this post" });
       }
-      return res.status(200).send({ likes });
+      return res.status(200).send({ Total: likes.length, likes });
     } catch (error) {
       console.log(error);
       next(error);
