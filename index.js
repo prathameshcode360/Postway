@@ -1,4 +1,5 @@
 import express from "express";
+import { connectToDatabase } from "./src/config/mongodb.js";
 import userRouter from "./src/features/users/user.routes.js";
 import postRouter from "./src/features/post/post.routes.js";
 import commentRouter from "./src/features/comments/comments.routes.js";
@@ -30,4 +31,5 @@ server.use((req, res) => {
 
 server.listen(3700, () => {
   console.log("Server is listening on port 3700");
+  connectToDatabase();
 });
