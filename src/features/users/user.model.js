@@ -1,8 +1,9 @@
 export default class UserModel {
-  constructor(id, userName, password) {
-    this.id = id;
+  constructor(userName, email, password, _id) {
     this.userName = userName;
+    this.email = email;
     this.password = password;
+    this._id = _id;
   }
   static getAll() {
     return users;

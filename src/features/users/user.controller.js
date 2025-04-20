@@ -1,6 +1,10 @@
-import UserModel from "./user.model.js";
+import UserRepository from "./user.repo.js";
 import jwt from "jsonwebtoken";
 export default class UserController {
+  constructor() {
+    this.userRepo = new UserRepository();
+  }
+
   getUsers(req, res, next) {
     try {
       const users = UserModel.getAll();
@@ -10,10 +14,10 @@ export default class UserController {
       next(error);
     }
   }
-  signUp(req, res, next) {
+  async signUp(req, res, next) {
     try {
-      const { userName, password } = req.body;
-      const newUser = UserModel.register(userName, password);
+      const { userName, email, password } = req.body;
+      const newUser = await this.userRepo.register(userName, email, password);
       return res
         .status(201)
         .send({ msg: "User added successfully", user: newUser });
