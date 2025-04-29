@@ -15,11 +15,11 @@ export default class UserRepository {
       console.error("Error registering user:", error);
     }
   }
-  async login(email, password) {
+  async getByEmail(email) {
     try {
       const db = await getDB();
       const userCollection = db.collection("users");
-      const user = await userCollection.findOne({ email, password });
+      const user = await userCollection.findOne({ email });
       return user;
     } catch (error) {
       console.error("Error logging user:", error);

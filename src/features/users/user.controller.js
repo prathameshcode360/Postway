@@ -1,5 +1,6 @@
 import UserRepository from "./user.repo.js";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 export default class UserController {
   constructor() {
     this.userRepo = new UserRepository();
@@ -17,7 +18,12 @@ export default class UserController {
   async signUp(req, res, next) {
     try {
       const { userName, email, password } = req.body;
-      const newUser = await this.userRepo.register(userName, email, password);
+      const hashPassword = await bcrypt.hash(password, 12);
+      const newUser = await this.userRepo.register(
+        userName,
+        email,
+        hashPassword
+      );
       return res
         .status(201)
         .send({ msg: "User added successfully", user: newUser });
@@ -29,21 +35,26 @@ export default class UserController {
   async signIn(req, res, next) {
     try {
       const { email, password } = req.body;
-      const user = await this.userRepo.login(email, password);
+      const user = await this.userRepo.getByEmail(email);
       if (!user) {
-        return res.status(404).send({ msg: "Invalid Credentials" });
+        return res.status(404).send({ msg: "User Not found" });
       }
-      const token = jwt.sign(
-        {
-          userId: user.id,
-          username: user.userName,
-        },
-        "Vm+39ofliO?OoQJ",
-        {
-          expiresIn: "1h",
-        }
-      );
-      return res.status(200).send(token);
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) {
+        return res.status(401).send({ msg: "Invalid Credentials" });
+      } else {
+        const token = jwt.sign(
+          {
+            userId: user.id,
+            username: user.userName,
+          },
+          "Vm+39ofliO?OoQJ",
+          {
+            expiresIn: "1h",
+          }
+        );
+        return res.status(200).send(token);
+      }
     } catch (error) {
       console.log(error);
       next(error);
