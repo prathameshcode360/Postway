@@ -5,9 +5,9 @@ export default class UserController {
     this.userRepo = new UserRepository();
   }
 
-  getUsers(req, res, next) {
+  async getUsers(req, res, next) {
     try {
-      const users = UserModel.getAll();
+      const users = await this.userRepo.getAll();
       return res.status(200).send({ users });
     } catch (error) {
       console.log(error);
@@ -26,10 +26,10 @@ export default class UserController {
       next(error);
     }
   }
-  signIn(req, res, next) {
+  async signIn(req, res, next) {
     try {
-      const { userName, password } = req.body;
-      const user = UserModel.login(userName, password);
+      const { email, password } = req.body;
+      const user = await this.userRepo.login(email, password);
       if (!user) {
         return res.status(404).send({ msg: "Invalid Credentials" });
       }
@@ -49,10 +49,11 @@ export default class UserController {
       next(error);
     }
   }
-  getOneUser(req, res, next) {
+  async getOneUser(req, res, next) {
     try {
       const id = req.params.id;
-      const user = UserModel.getOneUser(id);
+      console.log(id);
+      const user = await this.userRepo.getProfile(id);
       if (!user) {
         return res.status(404).send({ msg: "User not found" });
       }
