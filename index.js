@@ -12,9 +12,9 @@ const server = express();
 server.use(express.json());
 
 server.use("/api/users", userRouter);
-server.use("/api/posts", loggerMiddleware, postRouter);
-server.use("/api/comments", loggerMiddleware, commentRouter);
-server.use("/api/likes", loggerMiddleware, likeRouter);
+server.use("/api/posts", postRouter);
+server.use("/api/comments", commentRouter);
+server.use("/api/likes", likeRouter);
 
 server.use((err, req, res, next) => {
   if (err instanceof ApplicationError) {

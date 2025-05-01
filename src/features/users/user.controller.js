@@ -43,9 +43,10 @@ export default class UserController {
       if (!isMatch) {
         return res.status(401).send({ msg: "Invalid Credentials" });
       } else {
+        console.log("User:", user);
         const token = jwt.sign(
           {
-            userId: user.id,
+            userId: user._id,
             username: user.userName,
           },
           "Vm+39ofliO?OoQJ",

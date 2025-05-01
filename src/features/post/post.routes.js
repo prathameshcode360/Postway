@@ -7,15 +7,18 @@ const postController = new PostController();
 
 const postRouter = express.Router();
 
-postRouter.get("/", postController.getPosts);
-postRouter.get("/:id", postController.getOnePost);
-postRouter.post("/userPosts", jwtAuth, postController.getUserPosts);
-postRouter.post(
-  "/add",
-  jwtAuth,
-  fileUpload.single("image"),
-  postController.createPost
-);
+postRouter.get("/", (req, res) => {
+  postController.getPosts(req, res);
+});
+postRouter.get("/:id", (req, res) => {
+  postController.getOnePost(req, res);
+});
+postRouter.post("/userPosts", jwtAuth, (req, res) => {
+  postController.getUserPosts(req, res);
+});
+postRouter.post("/add", jwtAuth, fileUpload.single("image"), (req, res) => {
+  postController.createPost(req, res);
+});
 postRouter.put(
   "/update/:id",
   jwtAuth,

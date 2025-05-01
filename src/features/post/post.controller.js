@@ -1,9 +1,16 @@
 import PostModel from "./post.model.js";
+import PostRepository from "./post.repo.js";
 
 export default class PostController {
-  getPosts(req, res, next) {
+  constructor() {
+    this.postRepo = new PostRepository();
+  }
+  async getPosts(req, res, next) {
     try {
-      let posts = PostModel.getAll();
+      let posts = await this.postRepo.getAll();
+      if (posts.length === 0) {
+        return res.status(404).send({ msg: "No posts found" });
+      }
       return res.status(200).send({ posts });
     } catch (error) {
       console.log(error);
@@ -11,10 +18,10 @@ export default class PostController {
     }
   }
 
-  getOnePost(req, res, next) {
+  async getOnePost(req, res, next) {
     try {
       const id = req.params.id;
-      const post = PostModel.getOne(id);
+      const post = await this.postRepo.getOnePost(id);
       if (!post) {
         return res.status(404).send({ msg: "Post not found" });
       }
@@ -25,10 +32,10 @@ export default class PostController {
     }
   }
 
-  getUserPosts(req, res, next) {
+  async getUserPosts(req, res, next) {
     try {
       const { userId } = req.user;
-      let userPosts = PostModel.getUserPosts(userId);
+      let userPosts = await this.postRepo.getUsersPosts(userId);
       if (userPosts.length === 0) {
         return res.status(404).send({ msg: "No post found for this user" });
       }
@@ -39,12 +46,14 @@ export default class PostController {
     }
   }
 
-  createPost(req, res, next) {
+  async createPost(req, res, next) {
     try {
       const { caption } = req.body;
       const image = req.file.filename;
       const { userId, username } = req.user;
-      const newPost = PostModel.add(caption, image, userId, username);
+      console.log("UserId:", userId);
+      console.log("Username:", username);
+      const newPost = await this.postRepo.add(caption, image, userId, username);
       return res
         .status(201)
         .send({ msg: "Post added successfully", newPost: newPost });

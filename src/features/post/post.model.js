@@ -1,10 +1,10 @@
 export default class PostModel {
-  constructor(id, caption, image, userId, username) {
-    this.id = id;
+  constructor(caption, image, userId, username, _id) {
     this.caption = caption;
     this.image = image;
     this.userId = userId;
     this.username = username;
+    this._id = _id;
   }
   static getAll() {
     return posts;

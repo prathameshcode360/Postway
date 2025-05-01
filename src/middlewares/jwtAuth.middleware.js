@@ -7,7 +7,7 @@ export default function jwtAuth(req, res, next) {
   }
   try {
     const payload = jwt.verify(token, "Vm+39ofliO?OoQJ");
-    // console.log("PayLoad:", payload);
+    console.log("PayLoad:", payload);
     req.user = payload;
   } catch (error) {
     console.log("Error in JWT", error);
