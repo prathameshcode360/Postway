@@ -16,6 +16,9 @@ postRouter.get("/:id", (req, res) => {
 postRouter.post("/userPosts", jwtAuth, (req, res) => {
   postController.getUserPosts(req, res);
 });
+postRouter.post("/userPosts/:postId", jwtAuth, (req, res) => {
+  postController.getUserOnePost(req, res);
+});
 postRouter.post("/add", jwtAuth, fileUpload.single("image"), (req, res) => {
   postController.createPost(req, res);
 });
@@ -23,8 +26,12 @@ postRouter.put(
   "/update/:id",
   jwtAuth,
   fileUpload.single("image"),
-  postController.updatePost
+  (req, res) => {
+    postController.updatePost(req, res);
+  }
 );
-postRouter.delete("/delete/:id", jwtAuth, postController.deletePost);
+postRouter.delete("/delete/:id", jwtAuth, (req, res) => {
+  postController.deletePost(req, res);
+});
 
 export default postRouter;
