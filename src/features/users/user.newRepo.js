@@ -26,4 +26,17 @@ export default class NewUserRepo {
       console.log("Error while getting all users", error);
     }
   }
+  async resetPassword(userId, newPassword) {
+    try {
+      const user = await UserModel.findById(userId);
+      if (user) {
+        user.password = newPassword;
+        await user.save();
+        return "Password reset successfully";
+      }
+      return "user not found";
+    } catch (error) {
+      console.log("Error while resetting password", error);
+    }
+  }
 }

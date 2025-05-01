@@ -76,4 +76,17 @@ export default class UserController {
       next(error);
     }
   }
+
+  async resetPassword(req, res, next) {
+    try {
+      const { newPassword } = req.body;
+      const hashPassword = await bcrypt.hash(newPassword, 12);
+      const { userId } = req.user;
+      const result = await this.userRepo.resetPassword(userId, hashPassword);
+      return res.status(200).send({ msg: result });
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  }
 }
