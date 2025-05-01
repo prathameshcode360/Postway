@@ -1,9 +1,10 @@
-import UserRepository from "./user.repo.js";
+// import UserRepository from "./user.repo.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import NewUserRepo from "./user.newRepo.js";
 export default class UserController {
   constructor() {
-    this.userRepo = new UserRepository();
+    this.userRepo = new NewUserRepo();
   }
 
   async getUsers(req, res, next) {
