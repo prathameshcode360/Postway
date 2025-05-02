@@ -1,4 +1,6 @@
+import mongoose from "mongoose";
 import UserModel from "./user.schemas.js";
+import { ApplicationError } from "../../error-handler/applicationError.js";
 
 export default class NewUserRepo {
   async register(userName, email, password) {
@@ -7,6 +9,9 @@ export default class NewUserRepo {
       await newUser.save();
       return newUser;
     } catch (error) {
+      if (error instanceof mongoose.Error.ValidationError) {
+        throw new ApplicationError("Invalid data: " + error.message, 400);
+      }
       console.log("Error while registering user", error);
     }
   }

@@ -6,17 +6,17 @@ const userController = new UserController();
 
 const userRouter = express.Router();
 
-userRouter.get("/", (req, res) => {
-  userController.getUsers(req, res);
+userRouter.get("/", (req, res, next) => {
+  userController.getUsers(req, res, next);
 });
-userRouter.post("/register", (req, res) => {
-  userController.signUp(req, res);
+userRouter.post("/register", (req, res, next) => {
+  userController.signUp(req, res, next);
 });
-userRouter.post("/login", (req, res) => {
-  userController.signIn(req, res);
+userRouter.post("/login", (req, res, next) => {
+  userController.signIn(req, res, next);
 });
-userRouter.get("/:id", (req, res) => {
-  userController.getOneUser(req, res);
+userRouter.get("/:id", (req, res, next) => {
+  userController.getOneUser(req, res, next);
 });
 
 userRouter.put("/resetPassword", jwtAuth, (req, res) => {
