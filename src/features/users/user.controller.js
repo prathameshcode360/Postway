@@ -11,6 +11,9 @@ export default class UserController {
   async getUsers(req, res, next) {
     try {
       const users = await this.userRepo.getAll();
+      if (users.length === 0) {
+        return res.status(404).send({ msg: "No users found" });
+      }
       return res.status(200).send({ users });
     } catch (error) {
       console.log(error);
@@ -69,7 +72,13 @@ export default class UserController {
           maxAge: 1 * 60 * 60 * 1000,
         });
 
-        return res.status(200).send(token);
+        return res
+          .status(200)
+          .send({
+            msg: "Login successfully",
+            token: token,
+            note: "You don't need to send token in authorization header for secure routes,because we are already saving it in the cookie,although you can send it in the header as well",
+          });
       }
     } catch (error) {
       console.log(error);

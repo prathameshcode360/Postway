@@ -29,7 +29,7 @@ export default class NewUserRepo {
   }
   async getAll() {
     try {
-      return await UserModel.find({});
+      return await UserModel.find();
     } catch (error) {
       console.log("Error while getting all users", error);
     }

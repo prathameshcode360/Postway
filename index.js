@@ -12,7 +12,6 @@ import { connectWithMongoose } from "./src/config/mongoose.js";
 const server = express();
 
 server.use(express.json());
-server.use(express.urlencoded({ extended: true }));
 server.use(cookieParser());
 
 server.use("/api/users", userRouter);

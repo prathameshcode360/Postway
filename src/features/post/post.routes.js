@@ -7,27 +7,32 @@ const postController = new PostController();
 
 const postRouter = express.Router();
 
-postRouter.get("/", (req, res) => {
-  postController.getPosts(req, res);
+postRouter.get("/", (req, res, next) => {
+  postController.getPosts(req, res, next);
 });
-postRouter.get("/:id", (req, res) => {
-  postController.getOnePost(req, res);
+postRouter.get("/:id", (req, res, next) => {
+  postController.getOnePost(req, res, next);
 });
-postRouter.post("/userPosts", jwtAuth, (req, res) => {
-  postController.getUserPosts(req, res);
+postRouter.post("/userPosts", jwtAuth, (req, res, next) => {
+  postController.getUserPosts(req, res, next);
 });
-postRouter.post("/userPosts/:postId", jwtAuth, (req, res) => {
-  postController.getUserOnePost(req, res);
+postRouter.post("/userPosts/:postId", jwtAuth, (req, res, next) => {
+  postController.getUserOnePost(req, res, next);
 });
-postRouter.post("/add", jwtAuth, fileUpload.single("image"), (req, res) => {
-  postController.createPost(req, res);
-});
+postRouter.post(
+  "/add",
+  jwtAuth,
+  fileUpload.single("image"),
+  (req, res, next) => {
+    postController.createPost(req, res, next);
+  }
+);
 postRouter.put(
   "/update/:id",
   jwtAuth,
   fileUpload.single("image"),
-  (req, res) => {
-    postController.updatePost(req, res);
+  (req, res, next) => {
+    postController.updatePost(req, res, next);
   }
 );
 postRouter.delete("/delete/:id", jwtAuth, (req, res) => {

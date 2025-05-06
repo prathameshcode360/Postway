@@ -1,9 +1,8 @@
-import PostModel from "./post.model.js";
-import PostRepository from "./post.repo.js";
+import NewPostRepo from "./post.newRepo.js";
 
 export default class PostController {
   constructor() {
-    this.postRepo = new PostRepository();
+    this.postRepo = new NewPostRepo();
   }
   async getPosts(req, res, next) {
     try {
@@ -21,7 +20,7 @@ export default class PostController {
   async getOnePost(req, res, next) {
     try {
       const id = req.params.id;
-      const post = await this.postRepo.getOnePost(id);
+      const post = await this.postRepo.getOne(id);
       if (!post) {
         return res.status(404).send({ msg: "Post not found" });
       }
@@ -83,9 +82,19 @@ export default class PostController {
       const { caption } = req.body;
       const image = req.file ? req.file.filename : null;
       const { userId } = req.user;
-      const result = await this.postRepo.update(id, userId, caption, image);
-      // console.log("Result:", result);
-      return res.send({ msg: result.msg, updatePost: result.updatedPost });
+      const updatedPost = await this.postRepo.update(
+        id,
+        userId,
+        caption,
+        image
+      );
+      console.log("updatedPost:", updatedPost);
+      if (!updatedPost) {
+        return res.status(404).send({ msg: "Post not found" });
+      }
+      return res
+        .status(200)
+        .send({ msg: "post updated successfully", updatedPost: updatedPost });
     } catch (error) {
       console.log(error);
       next(error);
@@ -94,14 +103,15 @@ export default class PostController {
   async deletePost(req, res, next) {
     try {
       const id = req.params.id;
-      console.log("PostId:", id);
+      // console.log("PostId:", id);
       const { userId } = req.user;
-      const result = await this.postRepo.delete(id, userId);
-      console.log("Result:", result);
-      if (result.deletedCount > 0) {
-        return res.status(200).send({ msg: "post deleted successfully" });
+      const deletedPost = await this.postRepo.delete(id, userId);
+      if (!deletedPost) {
+        return res.status(404).send({ msg: "Post not found" });
       }
-      return res.status(404).send({ msg: "post not found" });
+      return res
+        .status(200)
+        .send({ msg: "Post deleted successfully", deletedPost: deletedPost });
     } catch (error) {
       console.log(error);
       next(error);
