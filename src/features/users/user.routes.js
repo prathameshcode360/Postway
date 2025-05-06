@@ -18,9 +18,16 @@ userRouter.post("/login", (req, res, next) => {
 userRouter.get("/:id", (req, res, next) => {
   userController.getOneUser(req, res, next);
 });
+userRouter.put("/update", jwtAuth, (req, res, next) => {
+  userController.updateProfile(req, res, next);
+});
 
-userRouter.put("/resetPassword", jwtAuth, (req, res) => {
-  userController.resetPassword(req, res);
+userRouter.post("/logout", jwtAuth, (req, res, next) => {
+  userController.logout(req, res, next);
+});
+
+userRouter.post("/logoutAll", jwtAuth, (req, res, next) => {
+  userController.logoutFromAllDevices(req, res, next);
 });
 
 export default userRouter;

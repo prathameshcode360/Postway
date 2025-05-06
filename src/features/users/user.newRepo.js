@@ -3,9 +3,9 @@ import UserModel from "./user.schemas.js";
 import { ApplicationError } from "../../error-handler/applicationError.js";
 
 export default class NewUserRepo {
-  async register(userName, email, password) {
+  async register(userName, email, password, gender) {
     try {
-      const newUser = new UserModel({ userName, email, password });
+      const newUser = new UserModel({ userName, email, password, gender });
       await newUser.save();
       return newUser;
     } catch (error) {
@@ -21,6 +21,9 @@ export default class NewUserRepo {
       const user = await UserModel.findOne({ email });
       return user;
     } catch (error) {
+      if (error instanceof mongoose.Error.ValidationError) {
+        throw new ApplicationError("Invalid data: " + error.message, 400);
+      }
       console.log("Error while finding user by email", error);
     }
   }
@@ -31,13 +34,24 @@ export default class NewUserRepo {
       console.log("Error while getting all users", error);
     }
   }
-  async resetPassword(userId, newPassword) {
+
+  async getProfile(userId) {
+    try {
+      const user = await UserModel.findById(userId);
+      return user;
+    } catch (error) {
+      console.log("Error while getting one user", error);
+    }
+  }
+
+  async update(userId, newUserName, newPassword) {
     try {
       const user = await UserModel.findById(userId);
       if (user) {
-        user.password = newPassword;
+        user.password = newPassword || user.password;
+        user.userName = newUserName || user.userName;
         await user.save();
-        return "Password reset successfully";
+        return "Profile updated  successfully";
       }
       return "user not found";
     } catch (error) {

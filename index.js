@@ -1,5 +1,6 @@
 import express from "express";
 // import { connectToDatabase } from "./src/config/mongodb.js";
+import cookieParser from "cookie-parser";
 import userRouter from "./src/features/users/user.routes.js";
 import postRouter from "./src/features/post/post.routes.js";
 import commentRouter from "./src/features/comments/comments.routes.js";
@@ -11,6 +12,8 @@ import { connectWithMongoose } from "./src/config/mongoose.js";
 const server = express();
 
 server.use(express.json());
+server.use(express.urlencoded({ extended: true }));
+server.use(cookieParser());
 
 server.use("/api/users", userRouter);
 server.use("/api/posts", postRouter);
