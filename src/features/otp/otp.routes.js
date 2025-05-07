@@ -12,7 +12,7 @@ otpRouter.post("/verify-otp", (req, res, next) => {
   otpController.verifyOtp(req, res, next);
 });
 
-otpRouter.post("reset-password", (req, res, next) => {
+otpRouter.post("/reset-password", (req, res, next) => {
   otpController.resetPassword(req, res.next);
 });
 

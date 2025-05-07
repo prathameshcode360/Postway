@@ -1,26 +1,33 @@
-# 📬 Postway
+# 📬 Postway - Social Media Backend API
 
-Implementation of Backend REST API structure for a social media platform built using **Node.js**, **Express**, and **MongoDB**.
+Implementation of Backend REST API structure for a social media platform built using **Node.js**, **Express**, **MongoDB** with **Mongoose** for persistent storage, and additional features like **Friendship**, **OTP-based password reset**, and **JWT Authentication**.
 
 ---
 
 ## 🚀 Features
 
-- User registration & login with JWT authentication
-- Create, read, update, and delete posts (with image upload support)
-- Add, edit, and delete comments on posts
-- Like/unlike functionality for posts
-- View user-specific posts
+- **User registration & login** with JWT authentication
+- **Create, read, update, and delete posts** (with image upload support)
+- **Add, edit, and delete comments** on posts
+- **Like/unlike functionality** for posts
+- **Friendship management** (send requests, accept/decline)
+- **OTP-based password reset** functionality
 - Middleware for authentication and file uploads
+- Uses **MongoDB** and **Mongoose** for database management
+- **JWT tokens** stored in cookies for user authentication
 
 ---
 
 ## 🛠 Tech Stack
 
-- Node.js
-- Express.js
-- JWT (Authentication)
-- Multer (File Uploads)
+- **Node.js**: Backend runtime environment
+- **Express.js**: Web framework for API routing
+- **MongoDB** & **Mongoose**: Persistent storage and database modeling
+- **JWT (JSON Web Tokens)**: For user authentication
+- **Multer**: For file uploads
+- **Nodemailer**: For sending OTP emails
+- **Cookie-parser**: For handling cookies securely
+- **Bcrypt.js**: For password hashing
 
 ---
 
@@ -28,12 +35,15 @@ Implementation of Backend REST API structure for a social media platform built u
 
 ### 👤 User Routes
 
-| Method | Endpoint          | Description         | Auth Required |
-| ------ | ----------------- | ------------------- | ------------- |
-| GET    | `/users/`         | Get all users       | ❌            |
-| GET    | `/users/:id`      | Get a user by ID    | ❌            |
-| POST   | `/users/register` | Register a new user | ❌            |
-| POST   | `/users/login`    | Login user          | ❌            |
+| Method | Endpoint           | Description             | Auth Required |
+| ------ | ------------------ | ----------------------- | ------------- |
+| GET    | `/users/`          | Get all users           | ❌            |
+| GET    | `/users/:id`       | Get a user by ID        | ❌            |
+| POST   | `/users/register`  | Register a new user     | ❌            |
+| POST   | `/users/login`     | Login user              | ❌            |
+| PUT    | `/users/update`    | Update user profile     | ✅            |
+| POST   | `/users/logout`    | Logout user             | ✅            |
+| POST   | `/users/logoutAll` | Logout from all devices | ✅            |
 
 ---
 
@@ -71,6 +81,38 @@ Implementation of Backend REST API structure for a social media platform built u
 
 ---
 
-## 🔐 Authentication
+### 🤝 Friendship Routes
 
-For routes that require authentication, include the JWT token in the request header:
+| Method | Endpoint                  | Description                               | Auth Required |
+| ------ | ------------------------- | ----------------------------------------- | ------------- |
+| GET    | `/friendship/getFriends`  | Get all friends of the logged-in user     | ✅            |
+| GET    | `/friendship/getPendings` | Get all pending friend requests           | ✅            |
+| POST   | `/friendship/sendRequest` | Send a friend request                     | ✅            |
+| POST   | `/friendship/toggle`      | Accept/Decline or Cancel a friend request | ✅            |
+
+---
+
+### 🔐 OTP Routes
+
+| Method | Endpoint              | Description                            | Auth Required |
+| ------ | --------------------- | -------------------------------------- | ------------- |
+| POST   | `/otp/send-otp`       | Send OTP to email (for password reset) | ❌            |
+| POST   | `/otp/verify-otp`     | Verify OTP sent to email               | ❌            |
+| POST   | `/otp/reset-password` | Reset password after OTP verification  | ✅            |
+
+---
+
+## ⚙️ Project Setup
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/prathameshcode360/Postway.git
+
+   📝 Notes
+   .Postman Usage: When making GET requests, you do not need to send anything in the Body tab in Postman. Just select the None option in the Body tab for such requests.
+   ```
+
+.Token Storage: You do not need to add the JWT token in the Authorization header every time for authentication. The token is stored in a secure cookie (sent with each request) after login.
+
+.OTP Functionality: For password reset, the email OTP is sent to the user's registered email address. Make sure to use a valid email format when testing OTP functionality.
