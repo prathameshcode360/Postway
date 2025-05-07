@@ -1,12 +1,9 @@
 import mongoose from "mongoose";
 
-const postSchema = new mongoose.Schema({
-  caption: {
-    type: String,
-    required: true,
-  },
-  image: {
-    type: String,
+const likeSchema = new mongoose.Schema({
+  postId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "posts",
     required: true,
   },
   userId: {
@@ -19,6 +16,5 @@ const postSchema = new mongoose.Schema({
     required: true,
   },
 });
-
-const PostModel = mongoose.model("posts", postSchema);
-export default PostModel;
+const LikeModel = mongoose.model("likes", likeSchema);
+export default LikeModel;

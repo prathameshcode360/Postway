@@ -1,22 +1,36 @@
-import CommentModel from "./comments.model.js";
+import CommentRepo from "./comment.repo.js";
 
 export default class CommentController {
-  addNewComment(req, res, next) {
+  constructor() {
+    this.commentRepo = new CommentRepo();
+  }
+
+  async addNewComment(req, res, next) {
     try {
-      const { userId } = req.user;
+      const { userId, username } = req.user;
       const { postId, comment } = req.body;
-      const result = CommentModel.add(postId, userId, comment);
-      return res.send({ result });
+      const newComment = await this.commentRepo.add(
+        comment,
+        postId,
+        userId,
+        username
+      );
+      if (newComment) {
+        return res
+          .status(201)
+          .send({ msg: "Comment added successfully", newComment: newComment });
+      }
+      return res.status(400).send({ msg: "Comment not added" });
     } catch (error) {
       console.log(error);
       next(error);
     }
   }
-  getComments(req, res, next) {
+  async getComments(req, res, next) {
     try {
       const postId = req.params.id;
-      let comments = CommentModel.getAll(postId);
-      if (comments.length <= 0) {
+      let comments = await this.commentRepo.getAll(postId);
+      if (comments.length === 0) {
         return res.status(404).send({ msg: "No comments found for this post" });
       }
       return res.status(200).send({ comments });
@@ -25,12 +39,15 @@ export default class CommentController {
       next(error);
     }
   }
-  getOneUserComments(req, res, next) {
+  async getOneUserComments(req, res, next) {
     try {
       const { userId } = req.user;
       const postId = req.params.id;
-      const comments = CommentModel.getOne(postId, userId);
-      if (comments.length <= 0) {
+      const comments = await this.commentRepo.getOneUserComments(
+        postId,
+        userId
+      );
+      if (comments.length === 0) {
         return res
           .status(404)
           .send({ msg: "No comments found for the user on this post" });
@@ -41,29 +58,40 @@ export default class CommentController {
       next(error);
     }
   }
-  removeComment(req, res, next) {
+  async removeComment(req, res, next) {
     try {
       const id = req.params.id;
       const { userId } = req.user;
-      const result = CommentModel.remove(id, userId);
-      return res.send({ msg: result });
+      const deletedComment = await this.commentRepo.remove(id, userId);
+      if (!deletedComment) {
+        return res.status(404).send({ msg: "Comment not found" });
+      }
+      return res.status(200).send({
+        msg: "Comment deleted successfully",
+        deletedComment: deletedComment,
+      });
     } catch (error) {
       console.log(error);
       next(error);
     }
   }
-  updateComment(req, res, next) {
+  async updateComment(req, res, next) {
     try {
       const { userId } = req.user;
-      const { postId, updatedComment } = req.body;
+      const { newComment } = req.body;
       const id = req.params.id;
-      const comment = CommentModel.update(id, postId, userId, updatedComment);
-      if (!comment) {
+      const updatedComment = await this.commentRepo.update(
+        id,
+        userId,
+        newComment
+      );
+      if (!updatedComment) {
         return res.status(404).send({ msg: "Comment not found" });
       }
-      return res
-        .status(201)
-        .send({ msg: "Comment updated successfully", comment });
+      return res.status(201).send({
+        msg: "Comment updated successfully",
+        updatedComment: updatedComment,
+      });
     } catch (error) {
       console.log(error);
       next(error);

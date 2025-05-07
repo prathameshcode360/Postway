@@ -51,9 +51,9 @@ export default class NewUserRepo {
         user.password = newPassword || user.password;
         user.userName = newUserName || user.userName;
         await user.save();
-        return "Profile updated  successfully";
+        return { msg: "Profile updated  successfully", updatedProfile: user };
       }
-      return "user not found";
+      return { msg: "User not found" };
     } catch (error) {
       console.log("Error while resetting password", error);
     }

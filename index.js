@@ -8,6 +8,7 @@ import likeRouter from "./src/features/likes/like.routes.js";
 // import loggerMiddleware from "./src/middlewares/logger.middleware.js";
 import { ApplicationError } from "./src/error-handler/applicationError.js";
 import { connectWithMongoose } from "./src/config/mongoose.js";
+import friendshipRouter from "./src/features/friendships/friendship.routes.js";
 
 const server = express();
 
@@ -18,6 +19,7 @@ server.use("/api/users", userRouter);
 server.use("/api/posts", postRouter);
 server.use("/api/comments", commentRouter);
 server.use("/api/likes", likeRouter);
+server.use("/api/friendship", friendshipRouter);
 
 server.use((err, req, res, next) => {
   if (err instanceof ApplicationError) {

@@ -1,12 +1,13 @@
 import mongoose from "mongoose";
 
-const postSchema = new mongoose.Schema({
-  caption: {
+const commentSchema = new mongoose.Schema({
+  comment: {
     type: String,
     required: true,
   },
-  image: {
-    type: String,
+  postId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "posts",
     required: true,
   },
   userId: {
@@ -20,5 +21,5 @@ const postSchema = new mongoose.Schema({
   },
 });
 
-const PostModel = mongoose.model("posts", postSchema);
-export default PostModel;
+const CommentModel = mongoose.model("comments", commentSchema);
+export default CommentModel;

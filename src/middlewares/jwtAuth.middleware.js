@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
 
 export default function jwtAuth(req, res, next) {
-  // console.log(req.cookies);
+  console.log(req.cookies);
   const token = req.cookies.token || req.headers["authorization"];
-  // console.log("JWT Middleware hit. Token:", token);
+  console.log("JWT Middleware hit. Token:", token);
   if (!token) {
     return res.status(401).send({ msg: "Unauthorized User" });
   }

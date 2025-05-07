@@ -35,8 +35,8 @@ postRouter.put(
     postController.updatePost(req, res, next);
   }
 );
-postRouter.delete("/delete/:id", jwtAuth, (req, res) => {
-  postController.deletePost(req, res);
+postRouter.delete("/delete/:id", jwtAuth, (req, res, next) => {
+  postController.deletePost(req, res, next);
 });
 
 export default postRouter;
