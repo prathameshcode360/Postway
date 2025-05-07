@@ -58,4 +58,18 @@ export default class NewUserRepo {
       console.log("Error while resetting password", error);
     }
   }
+  // reset password by using otp
+  async resetPassword(email, newPassword) {
+    try {
+      const user = await UserModel.findOne({ email: email });
+      if (user) {
+        user.password = newPassword;
+        await user.save();
+        return { Msg: "Password reset successfully" };
+      }
+      return { msg: "User not found" };
+    } catch (error) {
+      console.log("Error while reseting password:", error);
+    }
+  }
 }

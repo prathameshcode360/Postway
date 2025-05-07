@@ -6,8 +6,6 @@ export default class FriendshipController {
   }
   async getAllFriends(req, res, next) {
     try {
-      console.log(req.body);
-      console.log(req.user);
       const { userId } = req.user;
       let friends = await this.friendshipRepo.getAllFriends(userId);
       if (friends.length === 0) {
