@@ -102,17 +102,13 @@ Implementation of Backend REST API structure for a social media platform built u
 
 ---
 
-## ⚙️ Project Setup
+📝 Notes
 
-1. Clone the repository:
+.Postman Usage: When making GET requests, you do not need to send anything in the Body tab in Postman. Just select the None option in the Body tab for such requests.
 
-   ```bash
-   git clone https://github.com/prathameshcode360/Postway.git
-
-   📝 Notes
-   .Postman Usage: When making GET requests, you do not need to send anything in the Body tab in Postman. Just select the None option in the Body tab for such requests.
-   ```
+```
 
 .Token Storage: You do not need to add the JWT token in the Authorization header every time for authentication. The token is stored in a secure cookie (sent with each request) after login.
 
 .OTP Functionality: For password reset, the email OTP is sent to the user's registered email address. Make sure to use a valid email format when testing OTP functionality.
+```
