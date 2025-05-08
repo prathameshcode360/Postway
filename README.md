@@ -18,6 +18,14 @@ Implementation of Backend REST API structure for a social media platform built u
 
 ---
 
+## 📝 Notes
+
+- **Postman Usage**: When making `GET` requests, you do not need to send anything in the Body tab. Just select **None** in the Body tab.
+- **Token Storage**: You do not need to add the JWT token in the Authorization header manually. The token is stored in a secure **cookie** after login and is sent automatically with each request.
+- **OTP Functionality**: For password reset, OTP is sent to the user’s **registered email address**. Ensure you provide a valid email format when testing.
+
+---
+
 ## 🛠 Tech Stack
 
 - **Node.js**: Backend runtime environment
@@ -99,16 +107,3 @@ Implementation of Backend REST API structure for a social media platform built u
 | POST   | `/otp/send-otp`       | Send OTP to email (for password reset) | ❌            |
 | POST   | `/otp/verify-otp`     | Verify OTP sent to email               | ❌            |
 | POST   | `/otp/reset-password` | Reset password after OTP verification  | ✅            |
-
----
-
-📝 Notes
-
-.Postman Usage: When making GET requests, you do not need to send anything in the Body tab in Postman. Just select the None option in the Body tab for such requests.
-
-```
-
-.Token Storage: You do not need to add the JWT token in the Authorization header every time for authentication. The token is stored in a secure cookie (sent with each request) after login.
-
-.OTP Functionality: For password reset, the email OTP is sent to the user's registered email address. Make sure to use a valid email format when testing OTP functionality.
-```
